@@ -1,0 +1,60 @@
+<:Title>
+  Offer
+
+<:Body>
+  <form e-submit="make_commodity" role="form">
+    <div class="form-group">
+      <label>Title: </label>
+      <button class="btn {{ if !page._new_title.blank? }}btn-warning{{ elsif !page._title.blank? }}btn-info{{ else }}btn-success{{ end }}">
+        {{ if !page._new_title.blank? }}
+          {{ page._new_title }}
+        {{ elsif page._title }}
+          {{ page._title }}
+        {{ else }}
+          Enter title here
+        {{ end }}
+      </button>
+      <input class="form-control" type="text" value="{{ page._new_title }}" placeholder="Enter title here.." />
+      <label>Description: </label>
+      <button class="btn {{ if !page._new_description.blank? }}btn-warning{{ elsif !page._description.blank? }}btn-info{{ else }}btn-success{{ end }}">
+        {{ if !page._new_description.blank? }}
+          {{ page._new_description }}
+        {{ elsif page._description }}
+          {{ page._description }}
+        {{ else }}
+          Enter description here
+        {{ end }}
+      </button>
+      <input class="form-control" type="text" value="{{ page._new_description }}" placeholder="Enter description here.." />
+      <label>Price: </label>
+      <button class="btn {{ if !page._new_price.blank? }}btn-warning{{ elsif !page._price.blank? }}btn-info{{ else }}btn-success{{ end }}">
+        {{ if !page._new_price.blank? }}
+          {{ page._new_price }}
+        {{ elsif page._price }}
+          {{ page._price }}
+        {{ else }}
+          Enter price here
+        {{ end }}
+      </button>
+      <input class="form-control" type="text" value="{{ page._new_price }}" placeholder="Enter price here.." />
+    </div>
+  </form>
+  <hr>
+  <button type="submit" class="btn btn-primary">List Commodity</button>
+  <!-- <h1>Offer</h1> -->
+  <!-- <p>Seller: Counter an offer</p> -->
+  <!-- <hr> -->
+  <!-- <h2>Make Counter Offer</h2> -->
+  <!-- <h3>Item description</h3> -->
+  <!-- <p>Offer made</p> -->
+  <!-- <p>My counter</p> -->
+  <!-- <p>other edits</p> -->
+  <!-- <p>changes in red, green is only for things that are agreed to (ie location, price quantity etc)</p> -->
+  <!-- <hr> -->
+
+  <!-- <h2>Make Counter Offer</h2> -->
+  <!-- <p>link to offer details</p> -->
+  <!-- <p>(Red)new price offer instead of (Orange) Old Price offer</p> -->
+  <!-- <p>Click on above (see below)</p> -->
+  <!-- <p>(Input)(Blue) My price counter offer</p> -->
+  <!-- <p>Anything in green.. the buyer agrees with that field</p> -->

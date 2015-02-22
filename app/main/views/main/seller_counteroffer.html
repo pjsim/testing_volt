@@ -1,0 +1,18 @@
+<:Title>
+  Counteroffer
+
+<:Body>
+  <h2>{{ page._offer._title }}</h2>
+  <p>{{ page._offer._description }}</p>
+
+  <form e-submit="make_counter" role="form">
+    <div class="form-group">
+      <label>Price: </label>
+      <button class="btn {{ if !page._new_price.blank? }}btn-warning{{ elsif page._price_changed == true }}btn-info{{ else}}btn-danger{{ end }}">
+        {{ page._new_price.blank? ? page._offer._price : page._new_price }}
+      </button>
+      <input class="form-control" type="text" value="{{ page._new_price }}" placeholder="Enter your new price here.." />
+    </div>
+  </form>
+  <hr>
+  <button type="submit" class="btn btn-primary">Make Counteroffer</button>

@@ -1,0 +1,34 @@
+<:Title>
+  Offers
+
+<:Body>
+  <div class="row">
+    <div class="col-md-4">
+      <h1>My Offers</h1>
+      <ul>
+        {{ page._my_offers.each do |offer| }}
+          <li>
+            <a e-click="params._index = index" class="{{ if params._index.or(0).to_i == index }}selected{{ end }}">{{ offer._title }}</a>
+            {{ if offer._new_offer == true }}
+              <small>New counter offer!</small>
+            {{ end }}
+          </li>
+      </ul>
+      {{ end }}
+    </div>
+    <div class="col-md-8"> 
+      {{ if current_offer }}
+      <h4>{{ current_offer._description }}</h4>
+      {{ end }}
+    </div>
+  </div>
+
+  <!-- <h1>Offers</h1> -->
+  <!-- <p>Buyer: See offers you've made</p> -->
+  <!-- <hr> -->
+  <!-- <h2>My Haggles</h2> -->
+  <!-- <ul> -->
+    <!-- <li>Commodity 1</li> -->
+    <!-- <li>Commodity 2(new counter offer)</li> -->
+    <!-- <li>Commodity 3</li> -->
+  <!-- </ul> -->
