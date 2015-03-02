@@ -1,0 +1,22 @@
+<:Title>
+  Commodities
+
+<:Body>
+  <h1>Commodities</h1>
+  <div class="row">
+    <div class="col-md-4">
+      <ul>
+        {{ page._commodities.each do |commodity| }}
+          <li>
+            <a e-click="params._index = index" class="{{ if params._index.or(0).to_i == index }}selected{{ end }}">{{ commodity._title }}</a>
+            {{ commodity._price == '$0' ? 'Make me an offer' : commodity._price }}
+          </li>
+        {{ end }}
+      </ul>
+    </div>
+    <div class="col-md-8"> 
+      {{ if current_offer }}
+      <h4>{{ current_offer._description }}</h4>
+      {{ end }}
+    </div>
+  </div>

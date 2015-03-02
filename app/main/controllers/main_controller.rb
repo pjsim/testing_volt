@@ -1,15 +1,31 @@
 # By default Volt generates this controller for your Main component
 class MainController < Volt::ModelController
-  def index
-    # Add code for when the index view is loaded
+
+  def commodities_list
+    page._commodities = [
+      { title: 'Lexus', price: '$3000', description: 'kinda old', new_offer: false },
+      { title: 'Banana', price: '$3000', description: 'it\'s yellow', new_offer: true },
+      { title: 'Carbon Rod', price: '$3000', description: 'Look it glows', new_offer: false }
+    ] if page._commodities.blank?
   end
 
+  def index
+  end
   def about
-    # Add code for when the about view is loaded
+  end
+  def seller
+  end
+  def buyer
+  end
+
+  def commodities
+    commodities_list
   end
 
   def buyer_offer
-    page._offer_price = '$3000'
+    commodities_list
+    commodity_id = params._id
+    page._offer_price = page._commodities.first._price
   end
 
   def change_price
@@ -34,6 +50,9 @@ class MainController < Volt::ModelController
   end
 
   def make_commodity
+    page._title = 'Blank'
+    page._description = 'None'
+    page._price = '$0'
     unless page._new_title.blank?
       page._title = page._new_title
       page._title_changed = true
@@ -49,6 +68,8 @@ class MainController < Volt::ModelController
       page._price_changed = true
       page._new_price = ''
     end
+    commodities_list
+    page._commodities << { title: page._title, description: page._description, price: page._price }
   end
 
   def seller_counteroffer

@@ -11,7 +11,7 @@
         {{ elsif page._title }}
           {{ page._title }}
         {{ else }}
-          Enter title here
+          Empty
         {{ end }}
       </button>
       <input class="form-control" type="text" value="{{ page._new_title }}" placeholder="Enter title here.." />
@@ -22,7 +22,7 @@
         {{ elsif page._description }}
           {{ page._description }}
         {{ else }}
-          Enter description here
+          Empty
         {{ end }}
       </button>
       <input class="form-control" type="text" value="{{ page._new_description }}" placeholder="Enter description here.." />
@@ -33,28 +33,10 @@
         {{ elsif page._price }}
           {{ page._price }}
         {{ else }}
-          Enter price here
+          Empty
         {{ end }}
       </button>
-      <input class="form-control" type="text" value="{{ page._new_price }}" placeholder="Enter price here.." />
+      <input class="form-control" type="text" value="{{ page._new_price }}" placeholder="Enter price here.. (Optional)" />
     </div>
+    <button type="submit" class="btn btn-primary">List Commodity</button>
   </form>
-  <hr>
-  <button type="submit" class="btn btn-primary">List Commodity</button>
-  <!-- <h1>Offer</h1> -->
-  <!-- <p>Seller: Counter an offer</p> -->
-  <!-- <hr> -->
-  <!-- <h2>Make Counter Offer</h2> -->
-  <!-- <h3>Item description</h3> -->
-  <!-- <p>Offer made</p> -->
-  <!-- <p>My counter</p> -->
-  <!-- <p>other edits</p> -->
-  <!-- <p>changes in red, green is only for things that are agreed to (ie location, price quantity etc)</p> -->
-  <!-- <hr> -->
-
-  <!-- <h2>Make Counter Offer</h2> -->
-  <!-- <p>link to offer details</p> -->
-  <!-- <p>(Red)new price offer instead of (Orange) Old Price offer</p> -->
-  <!-- <p>Click on above (see below)</p> -->
-  <!-- <p>(Input)(Blue) My price counter offer</p> -->
-  <!-- <p>Anything in green.. the buyer agrees with that field</p> -->
