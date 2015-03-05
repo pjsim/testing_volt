@@ -2,41 +2,52 @@
   Offer
 
 <:Body>
-  <form e-submit="make_commodity" role="form">
-    <div class="form-group">
+  {{ if page._status == 'commodity_listed' }}
+    <div class="row">
       <label>Title: </label>
-      <button class="btn {{ if !page._new_title.blank? }}btn-warning{{ elsif !page._title.blank? }}btn-info{{ else }}btn-success{{ end }}">
+      {{ page._title }}
+    </div>
+    <div class="row">
+      <label>Description: </label>
+      {{ page._description }}
+    </div>
+    <div class="row">
+      <label>Price: </label>
+      ${{ page._price }}
+    </div>
+    <hr>
+    <a href='/seller_offer' class="btn btn-success">List another Commodity</a>
+    <a href='/commodities' class="btn btn-info">Continue to Commodities List</a>
+    <a href='/seller_offers' class="btn btn-primary">Continue to My Offers</a>
+    <br />
+  {{ else }}
+    <form e-submit="make_commodity" role="form">
+      <div class="form-group">
+        <label>Title: </label>
         {{ if !page._new_title.blank? }}
           {{ page._new_title }}
-        {{ elsif page._title }}
-          {{ page._title }}
         {{ else }}
-          Empty
+          None
         {{ end }}
-      </button>
-      <input class="form-control" type="text" value="{{ page._new_title }}" placeholder="Enter title here.." />
-      <label>Description: </label>
-      <button class="btn {{ if !page._new_description.blank? }}btn-warning{{ elsif !page._description.blank? }}btn-info{{ else }}btn-success{{ end }}">
+        <input class="form-control" type="text" value="{{ page._new_title }}" placeholder="Enter title here.." required=true />
+        <label>Description: </label>
         {{ if !page._new_description.blank? }}
           {{ page._new_description }}
-        {{ elsif page._description }}
-          {{ page._description }}
         {{ else }}
-          Empty
+          None
         {{ end }}
-      </button>
-      <input class="form-control" type="text" value="{{ page._new_description }}" placeholder="Enter description here.." />
-      <label>Price: </label>
-      <button class="btn {{ if !page._new_price.blank? }}btn-warning{{ elsif !page._price.blank? }}btn-info{{ else }}btn-success{{ end }}">
-        {{ if !page._new_price.blank? }}
-          {{ page._new_price }}
-        {{ elsif page._price }}
-          {{ page._price }}
+        <input class="form-control" type="text" value="{{ page._new_description }}" placeholder="Enter description here.. (Optional)" />
+        <label>Price: </label>
+        {{ if page._new_price == '0' }}
+          Free
+        {{ elsif !page._new_price.blank? }}
+          ${{ page._new_price }}
         {{ else }}
-          Empty
+          "Make me an offer"
         {{ end }}
-      </button>
-      <input class="form-control" type="text" value="{{ page._new_price }}" placeholder="Enter price here.. (Optional)" />
-    </div>
-    <button type="submit" class="btn btn-primary">List Commodity</button>
-  </form>
+        <input class="form-control" type="number" step="any" value="{{ page._new_price }}" placeholder="Enter price here.. (Optional)" />
+      </div>
+      <button type="submit" class="btn btn-success">List Commodity</button>
+    </form>
+  {{ end }}
+  <br />

@@ -1,0 +1,15 @@
+<:Title>
+  Counteroffer
+
+<:Body>
+  <h1>Make Counteroffer</h1>
+  <h2>{{ page._haggle.first._commodity }}</h2>
+  <h3>Price: {{ page._haggle.first._price }}</h3>
+  <form e-submit="make_counter" role="form">
+    <div class="form-group">
+      <label>Price: </label>
+      <input class="form-control" type="text" value="{{ page._counter_price }}" placeholder="Enter your new price here.." />
+    </div>
+    <button type="submit" class="btn {{ page._status == 'counter_made' ? 'btn-primary' : 'btn-success' }}">Make Counteroffer</button>
+  </form>
+  <br />

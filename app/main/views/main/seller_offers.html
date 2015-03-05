@@ -3,28 +3,10 @@
 
 <:Body>
   <h1>My Commodities</h1>
-  <ul>
-    {{ page._my_commodities.each do |item| }}
-      <li>
-        <strong>{{ item._title }}</strong>
-        description: {{ item._description }}
-        {{ if item._new_offer == true }}
-          <small>New offer for: {{ item._offers._price }}!</small>
-        {{ end }}
-      </li>
-    {{ end }}
-  </ul>
-  <!-- <h1>Offers</h1> -->
-  <!-- <p>Seller: See offers you've been made</p> -->
-  <!-- <hr> -->
-  <!-- <h2>My Commodities</h2> -->
-  <!-- <ul> -->
-    <!-- <li>Commodity 1 (haggle count)</li> -->
-    <!-- <ul> -->
-      <!-- <li>Haggle 1</li> -->
-      <!-- <li>Haggle 2 (new offer)</li> -->
-      <!-- <li>Haggle 3</li> -->
-    <!-- </ul> -->
-    <!-- <li>Commodity 2 (haggle count)</li> -->
-    <!-- <li>Commodity 3 (haggle count)</li> -->
-  <!-- </ul> -->
+  <h4> {{ page._haggle.first._commodity }} </h4>
+  {{ page._haggle.each do |offer| }}
+    <em>Price: </em> {{ offer._price }}
+    <!-- {{ if item._new_offer == true }} -->
+      <!-- <small>New offer for: {{ item._offers._price }}!</small> -->
+    <!-- {{ end }} -->
+  {{ end }}

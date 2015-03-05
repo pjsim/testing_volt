@@ -3,9 +3,9 @@ class MainController < Volt::ModelController
 
   def commodities_list
     page._commodities = [
-      { title: 'Lexus', price: '$3000', description: 'kinda old', new_offer: false },
-      { title: 'Banana', price: '$3000', description: 'it\'s yellow', new_offer: true },
-      { title: 'Carbon Rod', price: '$3000', description: 'Look it glows', new_offer: false }
+      { title: 'Lexus', price: '3000', description: 'kinda old', new_offer: false },
+      { title: 'Banana', price: '3000', description: 'it\'s yellow', new_offer: true },
+      { title: 'Carbon Rod', price: '3000', description: 'Look it glows', new_offer: false }
     ] if page._commodities.blank?
   end
 
@@ -23,36 +23,39 @@ class MainController < Volt::ModelController
   end
 
   def buyer_offer
+    page._status = ''
     commodities_list
-    commodity_id = params._id
-    page._offer_price = page._commodities.first._price
+    page._commodity = page._commodities.first
+    page._haggle = []
   end
 
-  def change_price
-    page._offer_price = "$#{page._new_price}"
-    page._price_changed = true
-    page._new_price = ''
+  def make_offer
+    flash._successes << "Offer made!"
+    page._status = 'offer_made'
+    page._haggle << { commodity: page._commodities.first._title, price: page._offer_price }
   end
 
-  def current_offer
-    page._my_offers[params._index.or(0).to_i]
+  def counteroffer
+    page._status = ''
+    commodities_list
+    page._commodity = page._commodities.first
   end
 
-  def buyer_offers
-    page._my_offers = [
-      { title: 'Lexus', description: 'kinda old', new_offer: false },
-      { title: 'Banana', description: 'it\'s yellow', new_offer: true },
-      { title: 'Carbon Rod', description: 'Look it glows', new_offer: false }
-    ]
+  def make_counter
+    flash._successes << "Counteroffer made!"
+    page._status = 'counter_made'
+    page._haggle << { commodity: page._commodities.first._title, price: page._counter_price }
   end
+
 
   def seller_offer
+    page._status = ''
+    page._title = 'Blank'
+    page._description = 'None'
+    page._price = ''
   end
 
   def make_commodity
-    page._title = 'Blank'
-    page._description = 'None'
-    page._price = '$0'
     unless page._new_title.blank?
       page._title = page._new_title
       page._title_changed = true
@@ -64,32 +67,15 @@ class MainController < Volt::ModelController
       page._new_description = ''
     end
     unless page._new_price.blank?
-      page._price = "$#{page._new_price}"
+      page._price = "#{page._new_price}"
       page._price_changed = true
       page._new_price = ''
     end
     commodities_list
     page._commodities << { title: page._title, description: page._description, price: page._price }
+    flash._successes << "Your data has been saved"
+    page._status = 'commodity_listed'
   end
-
-  def seller_counteroffer
-    page._offer = { title: 'Lexus', description: 'old', price: '$2000' }
-  end
-
-  def make_counter
-    page._offer._price = "$#{page._new_price}"
-    page._price_changed = true
-    page._new_price = ''
-  end
-
-  def seller_offers
-    page._my_commodities = [
-      { title: 'Lexus', description: 'kinda old', new_offer: false, offers: { price: '$1000' } },
-      { title: 'Banana', description: 'it\'s yellow', new_offer: true, offers: { price: '$2000' } },
-      { title: 'Carbon Rod', description: 'Look it glows', new_offer: false }
-    ]
-  end
-
 
   private
 

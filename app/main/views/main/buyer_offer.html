@@ -2,16 +2,14 @@
   Offer
 
 <:Body>
-  <h2>Lexus ES300 1999</h2>
-  <p>Nice car, bit old</p>
-  <form e-submit="change_price" role="form">
+  <h2>{{ page._commodity._title }}</h2>
+  <p>{{ page._commodity._description }}</p>
+  <form e-submit="make_offer" role="form">
     <div class="form-group">
       <label>Price: </label>
-      <button class="btn {{ if !page._new_price.blank? }}btn-warning{{ elsif page._price_changed == true }}btn-info{{ else}}btn-success{{ end }}">
-        {{ page._new_price.blank? ? page._offer_price : page._new_price }}
-      </button>
-      <input class="form-control" type="text" value="{{ page._new_price }}" placeholder="Enter your new price here.." />
+      ${{ page._offer_price.blank? ? page._commodity._price : page._offer_price }}
+      <input class="form-control" type="text" value="{{ page._offer_price }}" placeholder="Enter your new price here.." />
     </div>
+    <button type="submit" class="btn {{ page._status == 'offer_made' ? 'btn-primary' : 'btn-success' }}">Make Offer</button>
   </form>
-  <hr>
-  <button type="submit" class="btn btn-primary">Make Offer</button>
+  <br />
