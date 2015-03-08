@@ -9,60 +9,56 @@ class MainController < Volt::ModelController
     ] if page._commodities.blank?
   end
 
-  # Pages
-
   def index
+  end
+  def about
+  end
+  def seller
+  end
+  def buyer
   end
 
   def commodities
     commodities_list
   end
 
-  def commodities_show
-    commodities_list
-    page._commodity = page._commodities.first
-  end
-
-  def commodities_edit
-    commodities_list
-    page._commodity = page._commodities.first
-  end
-
-  def commodities_new
-    page._status = ''
-    page._title = 'Blank'
-    page._description = 'None'
-    page._price = ''
-  end
-
-  def commodities_offer
+  def buyer_offer
     page._status = ''
     commodities_list
     page._commodity = page._commodities.first
     page._haggle = []
   end
 
-  def haggles_counteroffer
+  def make_offer
+    flash._successes << "Offer made!"
+    page._status = 'offer_made'
+    page._haggle << { commodity: page._commodities.first._title, price: page._offer_price }
+  end
+
+  def counteroffer
     page._status = ''
     commodities_list
     page._commodity = page._commodities.first
   end
 
-  def haggles_buyer
-
+  def make_counter
+    flash._successes << "Counteroffer made!"
+    page._status = 'counter_made'
+    page._haggle << { commodity: page._commodities.first._title, price: page._counter_price }
   end
 
-  def haggles_seller
 
+  def seller_offer
+    page._status = ''
+    page._title = 'Blank'
+    page._description = 'None'
+    page._price = ''
   end
 
-  # Forms
-
-  def list_commodity
+  def make_commodity
     unless page._new_title.blank?
       page._title = page._new_title
       page._title_changed = true
-:q
       page._new_title = ''
     end
     unless page._new_description.blank?
@@ -80,19 +76,6 @@ class MainController < Volt::ModelController
     flash._successes << "Your data has been saved"
     page._status = 'commodity_listed'
   end
-
-  def make_offer
-    flash._successes << "Offer made!"
-    page._status = 'offer_made'
-    page._haggle << { commodity: page._commodities.first._title, price: page._offer_price }
-  end
-
-  def make_counteroffer
-    flash._successes << "Counteroffer made!"
-    page._status = 'offer_made'
-    page._haggle << { commodity: page._commodities.first._title, price: page._offer_price }
-  end
-
 
   private
 

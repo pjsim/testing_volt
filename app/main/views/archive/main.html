@@ -6,10 +6,17 @@
     <div class="header">
       <ul class="nav nav-pills pull-right">
         <:nav href="/" text="Home" />
+        <:nav href="/seller" text="Login as Seller" />
+        <:nav href="/buyer" text="Login as Buyer" />
+        <!-- <:nav href="/buyer_offer" text="Buyer Offer" /> -->
+        <!-- <:nav href="/buyer_offers" text="Buyer Offers" /> -->
+        <!-- <:nav href="/seller_offer" text="Seller Offer" /> -->
+        <!-- <:nav href="/seller_counteroffer" text="Seller Counteroffer" /> -->
+        <!-- <:nav href="/seller_offers" text="Seller Offers" /> -->
         <!-- <:nav href="/about" text="About" /> -->
         <!-- <:user-templates:menu /> -->
       </ul>
-      <h3 class="text-muted">HZZH DEMO</h3>
+      <h3 class="text-muted">HZZH</h3>
     </div>
 
     <:volt:notices />
@@ -19,9 +26,11 @@
     <div class="footer">
       <p>&copy; Company 2014</p>
     </div>
+
   </div>
 
 <:Nav>
   <li class="{{ if active_tab? }}active{{ end }}">
     <a href="{{ attrs.href }}">{{ attrs.text }}</a>
   </li>
+

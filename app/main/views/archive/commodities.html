@@ -1,0 +1,25 @@
+<:Title>
+  Commodities
+
+<:Body>
+  <h1>Commodities</h1>
+  <a href='#' class='btn btn-primary'>List a Commodity</a>
+  <a href='#' class='btn btn-primary'>Sort</a>
+  <a href='#' class='btn btn-primary'>Search</a>
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th></th>
+    </tr>
+    {{ page._commodities.each do |commodity| }}
+      <tr>
+        <td>{{ commodity._title }}</td>
+        <td>{{ commodity._description }}</td>
+        <td>{{ commodity._price }}</td>
+        <td>{{ if commodity._title == page._commodities.first._title }}<a href='/buyer_offer' class='btn btn-xs btn-info'>Make offer</a>{{ end }}</td>
+      </tr>
+    {{ end }}
+  </table>
+  <h4>Pagination</h4>

@@ -1,0 +1,9 @@
+<:Title>
+  Received Offers
+
+<:Body>
+  <h1>Received Offers</h1>
+  <h4> {{ page._haggle.first._commodity }} </h4>
+  {{ page._haggle.each do |offer| }}
+    <em>Price: </em> {{ offer._price }}
+  {{ end }}

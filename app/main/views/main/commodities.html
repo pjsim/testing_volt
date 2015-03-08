@@ -2,11 +2,11 @@
   Commodities
 
 <:Body>
-  <h1>Commodities</h1>
-  <a href='#' class='btn btn-primary'>List a Commodity</a>
-  <a href='#' class='btn btn-primary'>Sort</a>
-  <a href='#' class='btn btn-primary'>Search</a>
-  <table>
+  <h1>Items for Offer</h1>
+  <a href='/commodities_new' class='btn btn-primary'>List new item</a>
+  <br />
+  <br />
+  <table class='table'>
     <tr>
       <th>Title</th>
       <th>Description</th>
@@ -15,11 +15,17 @@
     </tr>
     {{ page._commodities.each do |commodity| }}
       <tr>
-        <td>{{ commodity._title }}</td>
+        {{ if commodity._title == page._commodities.first._title }}
+          <td><a href='/commodities_show'>{{ commodity._title }}</a></td>
+        {{ else }}
+          <td>{{ commodity._title }}</td>
+        {{ end }}
         <td>{{ commodity._description }}</td>
         <td>{{ commodity._price }}</td>
-        <td>{{ if commodity._title == page._commodities.first._title }}<a href='/buyer_offer' class='btn btn-xs btn-info'>Make offer</a>{{ end }}</td>
+        <td>{{ if commodity._title == page._commodities.first._title }}<a href='/commodities_offer' class='btn btn-xs btn-info'>Make offer</a>{{ end }}</td>
       </tr>
     {{ end }}
   </table>
-  <h4>Pagination</h4>
+  <small>Pagination here..</small>
+  <br />
+  <br />

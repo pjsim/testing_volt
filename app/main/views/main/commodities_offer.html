@@ -1,0 +1,15 @@
+<:Title>
+  Offer
+
+<:Body>
+  <h2>{{ page._commodity._title }}</h2>
+  <p>{{ page._commodity._description }}</p>
+  <form e-submit="make_offer" role="form">
+    <div class="form-group">
+      <label>Price: </label>
+      ${{ page._offer_price.blank? ? page._commodity._price : page._offer_price }}
+      <input class="form-control" type="text" value="{{ page._offer_price }}" placeholder="Enter your new price here.." />
+    </div>
+    <button type="submit" class="btn {{ page._status == 'offer_made' ? 'btn-primary' : 'btn-success' }}">Make Offer</button>
+  </form>
+  <br />
