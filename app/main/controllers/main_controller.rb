@@ -62,7 +62,6 @@ class MainController < Volt::ModelController
     unless page._new_title.blank?
       page._title = page._new_title
       page._title_changed = true
-:q
       page._new_title = ''
     end
     unless page._new_description.blank?
